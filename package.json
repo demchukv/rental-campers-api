@@ -1,0 +1,28 @@
+{
+  "name": "rental-campers-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node -r dotenv/config ./index.js",
+    "dev": "nodemon -r dotenv/config ./index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint --fix **/*.js"
+  },
+  "author": "Volodymyr Demchuk <demchukv@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "eslint": "^9.7.0",
+    "nodemon": "^3.1.4"
+  }
+}
