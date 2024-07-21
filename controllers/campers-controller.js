@@ -47,7 +47,12 @@ export const findCampers = async (req, res, next) => {
       res.status(404).end();
     }
 
-    res.json({ data: result, total: total, page: page, limit: limit });
+    res.json({
+      data: result,
+      total: total,
+      page: Number(page),
+      limit: Number(limit),
+    });
   } catch (error) {
     console.log(error);
     res.status(500);
