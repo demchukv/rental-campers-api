@@ -27,7 +27,7 @@
     "/campers": {
       "get": {
         "tags": [
-          "advert"
+          "campers"
         ],
         "summary": "Get list of campers",
         "description": "Get list of campers",
@@ -37,100 +37,258 @@
             "in": "query",
             "name": "page",
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "default": 1
             },
-            "description": "the number of page to select from collection",
-            "default": 1
+            "description": "the number of page to select from collection"
           },
           {
             "in": "query",
             "name": "limit",
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "default": 10
             },
-            "description": "the number of records to return",
-            "default": 10
+            "description": "the number of records to return"
           },
           {
             "in": "query",
             "name": "location",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "",
+              "example": "Lviv"
             },
-            "description": "the city name for filter records",
-            "default": "",
-            "example": "Lviv"
+            "description": "the city name for filter records"
           },
           {
             "in": "query",
             "name": "form",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "",
+              "example": "alcove"
             },
-            "description": "the form of vehicle",
-            "default": "",
-            "example": "alcove"
+            "description": "the form of vehicle"
           },
           {
             "in": "query",
             "name": "details_airConditioner",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "",
+              "example": "true"
             },
-            "description": "is air conditioner?",
-            "default": "",
-            "example": "true"
+            "description": "is air conditioner?"
           },
           {
             "in": "query",
             "name": "transmission",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "",
+              "example": "automatic"
             },
-            "description": "what transmission?",
-            "default": "",
-            "example": "automatic"
+            "description": "what transmission?"
           },
           {
             "in": "query",
             "name": "details_kitchen",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "",
+              "example": "true"
             },
-            "description": "is kitchen?",
-            "default": "",
-            "example": "true"
+            "description": "is kitchen?"
           },
           {
             "in": "query",
             "name": "details_shower",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "",
+              "example": "true"
             },
-            "description": "is shower?",
-            "default": "",
-            "example": "true"
+            "description": "is shower?"
           },
           {
             "in": "query",
             "name": "details_TV",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "",
+              "example": "true"
             },
-            "description": "is TV?",
-            "default": "",
-            "example": "true"
+            "description": "is TV?"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful operation"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "description": "total records that match filters"
+                    },
+                    "page": {
+                      "type": "integer",
+                      "description": "current page"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "item at page"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Camper"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "404": {
             "description": "Not found"
           },
           "500": {
             "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Camper": {
+        "type": "object",
+        "properties": {
+          "details": {
+            "type": "object",
+            "properties": {
+              "airConditioner": {
+                "type": "integer"
+              },
+              "bathroom": {
+                "type": "integer"
+              },
+              "kitchen": {
+                "type": "integer"
+              },
+              "beds": {
+                "type": "integer"
+              },
+              "TV": {
+                "type": "integer"
+              },
+              "CD": {
+                "type": "integer"
+              },
+              "radio": {
+                "type": "integer"
+              },
+              "shower": {
+                "type": "integer"
+              },
+              "toilet": {
+                "type": "integer"
+              },
+              "freezer": {
+                "type": "integer"
+              },
+              "hob": {
+                "type": "integer"
+              },
+              "microwave": {
+                "type": "integer"
+              },
+              "gas": {
+                "type": "string"
+              },
+              "water": {
+                "type": "string"
+              }
+            }
+          },
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "rating": {
+            "type": "number",
+            "format": "float"
+          },
+          "location": {
+            "type": "string"
+          },
+          "adults": {
+            "type": "integer"
+          },
+          "children": {
+            "type": "integer"
+          },
+          "engine": {
+            "type": "string"
+          },
+          "transmission": {
+            "type": "string"
+          },
+          "form": {
+            "type": "string"
+          },
+          "length": {
+            "type": "string"
+          },
+          "width": {
+            "type": "string"
+          },
+          "height": {
+            "type": "string"
+          },
+          "tank": {
+            "type": "string"
+          },
+          "consumption": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "gallery": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string"
+                },
+                "reviewer_name": {
+                  "type": "string"
+                },
+                "reviewer_rating": {
+                  "type": "integer"
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
