@@ -1,7 +1,6 @@
 import CampersModel from "../models/campers.js";
 
 export const findCampers = async (req, res, next) => {
-  console.log(req.query);
   const limit = req.query.limit ? req.query.limit : 10;
   const page = req.query.page ? req.query.page : 1;
 
