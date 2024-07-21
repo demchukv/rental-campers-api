@@ -36,18 +36,22 @@ export const findCampers = async (req, res, next) => {
     query["details.TV"] = { $gt: 0 };
   }
 
-  console.log("query: ", query);
   try {
     const result = await CampersModel.find(query)
       .limit(limit)
       .skip((page - 1) * limit);
     const total = await CampersModel.countDocuments(query);
-    console.log("Found: ", total);
+
     if (!result) {
       res.status(404).end();
     }
 
-    res.json({ data: result, total: total, page: page, limit: limit });
+    res.json({
+      data: result,
+      total: total,
+      page: Number(page),
+      limit: Number(limit),
+    });
   } catch (error) {
     console.log(error);
     res.status(500);
